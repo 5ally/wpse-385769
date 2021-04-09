@@ -11,4 +11,12 @@ class My_WP_REST_Contact_Controller extends WP_REST_Posts_Controller {
 
 		return true;
 	}
+
+	public function handle_status_param( $post_status, $post_type ) {
+		if ( in_array( $post_status, array( 'draft', 'publish' ) ) ) {
+			return $post_status;
+		}
+
+		return parent::handle_status_param( $post_status, $post_type );
+	}
 }
